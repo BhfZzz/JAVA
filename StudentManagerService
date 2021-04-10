@@ -89,7 +89,6 @@ public class StudentManager {
             arrayList.remove(index);
             System.out.println("删除成功");
         }
-
 /*
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入需删除学生的学号：");
@@ -105,21 +104,6 @@ public class StudentManager {
         System.out.println("输入需更改学生的学号：");
         String sid = sc.nextLine();
 
-        //录入需要修改的学生信息
-        System.out.println("输入学生新姓名：");
-        String name = sc.nextLine();
-        System.out.println("输入学生新年龄：");
-        String age = sc.nextLine();
-        System.out.println("输入学生新地址：");
-        String address = sc.nextLine();
-
-        //创建学生对象，读取新信息
-        Student s = new Student();
-        s.setSid(sid);
-        s.setName(name);
-        s.setAge(age);
-        s.setAddress(address);
-
         //创建不能存在的标记值
         int index = -1;
 
@@ -128,6 +112,7 @@ public class StudentManager {
             //读取每一个学生对象获取标记学生
             Student stu = arrayList.get(i);
             if (stu.getSid().equals(sid)){
+                //找到后赋值给index
                 index = i;
                 //找到后停止遍历
                 break;
@@ -138,6 +123,21 @@ public class StudentManager {
         if (index == -1){
             System.out.println("【该学生不存在，请重新输入】");
         }else {
+            //录入需要修改的学生信息
+            System.out.println("输入学生新姓名：");
+            String name = sc.nextLine();
+            System.out.println("输入学生新年龄：");
+            String age = sc.nextLine();
+            System.out.println("输入学生新地址：");
+            String address = sc.nextLine();
+
+            //创建学生对象，读取新信息
+            Student s = new Student();
+            s.setSid(sid);
+            s.setName(name);
+            s.setAge(age);
+            s.setAddress(address);
+
             arrayList.set(index,s);
             System.out.println("修改成功");
         }
