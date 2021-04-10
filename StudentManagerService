@@ -49,12 +49,14 @@ public class StudentManager {
         String age = sc.nextLine();
         System.out.println("请输入住址：");
         String address = sc.nextLine();
+
         //创建学生对象，将键盘录入赋值给学生对象
         Student s = new Student();
         s.setSid(sid);
         s.setName(name);
         s.setAge(age);
         s.setAddress(address);
+
         //将学生添加进学生集合
         arrayList.add(s);
 
@@ -65,15 +67,28 @@ public class StudentManager {
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入需删除学生的学号：");
         String sid = sc.nextLine();
+
+        //创建不能存在的标记值
+        int index = -1;
+
         //遍历集合，将删除学生对象从集合中删除
         for (int i = 0; i < arrayList.size(); i++) {
             Student s = arrayList.get(i);
             if (s.getSid().equals(sid)){
-                arrayList.remove(i);
+                //如果存在则赋值，不存在则else (见下一个if)
+                index = i;
+                //找到后停止遍历
                 break;
             }
         }
-        System.out.println("删除成功");
+
+        //解决学号不存在问题
+        if(index == -1){
+            System.out.println("【该学生不存在，请重新输入】");
+        }else {
+            arrayList.remove(index);
+            System.out.println("删除成功");
+        }
 
 /*
         Scanner sc = new Scanner(System.in);
@@ -105,16 +120,27 @@ public class StudentManager {
         s.setAge(age);
         s.setAddress(address);
 
+        //创建不能存在的标记值
+        int index = -1;
+
         //遍历集合，寻找需要修改信息进行修改
         for (int i = 0; i < arrayList.size(); i++) {
             //读取每一个学生对象获取标记学生
             Student stu = arrayList.get(i);
             if (stu.getSid().equals(sid)){
-                arrayList.set(i,s);
+                index = i;
+                //找到后停止遍历
                 break;
             }
         }
-        System.out.println("修改成功");
+
+        //解决学号不存在问题
+        if (index == -1){
+            System.out.println("【该学生不存在，请重新输入】");
+        }else {
+            arrayList.set(index,s);
+            System.out.println("修改成功");
+        }
     }
 
     public static void checkStudent(ArrayList<Student> arrayList){
